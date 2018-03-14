@@ -1,0 +1,32 @@
+
+
+section {
+  display: inline-block;
+}
+div {
+  height: 300px;
+  width: 300px;
+  border: 2px solid black;
+  display: inline-block;
+}
+
+.div1 {
+  background-image:   repeating-linear-gradient(45deg, transparent 0, transparent 8px, rgba(255,255,255,0.7) 8px, rgba(255,255,255,0.7) 12px,transparent 12px, transparent 20px, rgba(255,255,255,0.7) 20px, rgba(255,255,255,0.7) 32px),
+  repeating-linear-gradient(135deg, transparent 0, transparent 8px, rgba(255,255,255,0.7) 8px, rgba(255,255,255,0.7) 12px,transparent 12px, transparent 20px, rgba(255,255,255,0.7) 20px, rgba(255,255,255,0.7) 32px),
+  linear-gradient(to bottom right, #003580, #0ABFBC);
+}
+
+.div2 {
+  background-image: repeating-linear-gradient( 45deg, transparent 0, transparent 10px, rgba(255,2,45, 0.5) 10px, rgba(255,2,45, 0.5) 20px),
+  repeating-linear-gradient( 135deg, transparent 0, transparent 10px, rgba(255,2,45, 0.5) 10px, rgba(255,2,45, 0.5) 20px),
+  radial-gradient(white 40%, #f8584a);
+}
+
+.div3 {
+  $tr : transparent;
+  $wh-tr : rgba(255,255,255,0.6);
+  background:
+          repeating-linear-gradient($wh-tr  0, $wh-tr  1px, $tr 1px, $tr 16px, $wh-tr  16px, $wh-tr  17px, $tr 17px, $tr 32px, $wh-tr  32px, $wh-tr  33px, $tr 33px, $tr 48px, $wh-tr  48px, $wh-tr  49px, $tr 49px, $tr 64px, $wh-tr  64px, $wh-tr  65px, $tr 65px, $tr 80px, $wh-tr  80px, $wh-tr  81px ),
+          repeating-linear-gradient( 90deg, $wh-tr  0, $wh-tr  1px, $tr 1px, $tr 16px, $wh-tr  16px, $wh-tr  17px, $tr 17px, $tr 32px, $wh-tr  32px, $wh-tr  33px, $tr 33px, $tr 48px, $wh-tr  48px, $wh-tr  49px, $tr 49px, $tr 64px, $wh-tr  64px, $wh-tr  65px, $tr 65px, $tr 80px, $wh-tr  80px, $wh-tr  81px ),
+          #0067c2;
+}
