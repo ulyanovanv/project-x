@@ -1,16 +1,14 @@
 body {
   margin: 0;
   padding: 10px;
-  font-family: sans-serif;
-  width: 100%; }
+  font-family: sans-serif; }
   body section {
     display: inline-block; }
-    body section div {
-      height: 300px;
-      width: 300px;
-      border: 2px solid black;
-      display: inline-block;
-      margin: 10px; }
+  body div {
+    height: 300px;
+    width: 300px;
+    border: 2px solid black;
+    display: inline-block; }
   body .div1 {
     background-image: repeating-linear-gradient(45deg, transparent 0, transparent 8px, rgba(255, 255, 255, 0.7) 8px, rgba(255, 255, 255, 0.7) 12px, transparent 12px, transparent 20px, rgba(255, 255, 255, 0.7) 20px, rgba(255, 255, 255, 0.7) 32px), repeating-linear-gradient(135deg, transparent 0, transparent 8px, rgba(255, 255, 255, 0.7) 8px, rgba(255, 255, 255, 0.7) 12px, transparent 12px, transparent 20px, rgba(255, 255, 255, 0.7) 20px, rgba(255, 255, 255, 0.7) 32px), linear-gradient(to bottom right, #003580, #0ABFBC); }
   body .div2 {

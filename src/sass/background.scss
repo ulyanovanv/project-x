@@ -2,13 +2,15 @@
 
 section {
   display: inline-block;
+  div {
+    height: 300px;
+    width: 300px;
+    border: 2px solid black;
+    display: inline-block;
+    margin: 10px;
+  }
 }
-div {
-  height: 300px;
-  width: 300px;
-  border: 2px solid black;
-  display: inline-block;
-}
+
 
 .div1 {
   background-image:   repeating-linear-gradient(45deg, transparent 0, transparent 8px, rgba(255,255,255,0.7) 8px, rgba(255,255,255,0.7) 12px,transparent 12px, transparent 20px, rgba(255,255,255,0.7) 20px, rgba(255,255,255,0.7) 32px),
