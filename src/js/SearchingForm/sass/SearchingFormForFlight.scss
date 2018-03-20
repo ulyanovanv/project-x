@@ -1,0 +1,57 @@
+.searching-form-for-flight {
+  background-image: url("./../../../images/background/car.jpg");
+  form {
+    padding: 50px;
+    height: 100%;
+  }
+  .flight-direction {
+    label {
+      margin: 0 20px;
+      font-size: 1.5rem;
+      font-weight: 100;
+    }
+    input {
+      margin-right: 5px;
+    }
+    &_map {
+      float: right;
+      color: white;
+    }
+  }
+  .searching-critaria {
+    margin: 30px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    a {
+      text-decoration: none;
+      color: white;
+      &:hover {
+        color: aliceblue;
+        text-decoration: none;
+      }
+    }
+  }
+  .start-to-search {
+    margin: 30px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    &_container{
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    &_search-button {
+      input {
+        border-radius: 20px;
+        font-size: 2rem;
+        &:focus{
+          outline: none;
+        }
+      }
+    }
+  }
+}

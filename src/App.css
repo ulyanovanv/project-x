@@ -1,19 +1,15 @@
-body {
+body.root {
   margin: 0;
   padding: 10px;
-  font-family: sans-serif;
-  width: 100%; }
-  body section {
-    display: inline-block; }
-    body section div {
-      height: 300px;
-      width: 300px;
-      border: 2px solid black;
-      display: inline-block;
-      margin: 10px; }
-  body .div1 {
-    background-image: repeating-linear-gradient(45deg, transparent 0, transparent 8px, rgba(255, 255, 255, 0.7) 8px, rgba(255, 255, 255, 0.7) 12px, transparent 12px, transparent 20px, rgba(255, 255, 255, 0.7) 20px, rgba(255, 255, 255, 0.7) 32px), repeating-linear-gradient(135deg, transparent 0, transparent 8px, rgba(255, 255, 255, 0.7) 8px, rgba(255, 255, 255, 0.7) 12px, transparent 12px, transparent 20px, rgba(255, 255, 255, 0.7) 20px, rgba(255, 255, 255, 0.7) 32px), linear-gradient(to bottom right, #003580, #0ABFBC); }
-  body .div2 {
-    background-image: repeating-linear-gradient(45deg, transparent 0, transparent 10px, rgba(255, 2, 45, 0.5) 10px, rgba(255, 2, 45, 0.5) 20px), repeating-linear-gradient(135deg, transparent 0, transparent 10px, rgba(255, 2, 45, 0.5) 10px, rgba(255, 2, 45, 0.5) 20px), radial-gradient(white 40%, #f8584a); }
-  body .div3 {
-    background: repeating-linear-gradient(rgba(255, 255, 255, 0.6) 0, rgba(255, 255, 255, 0.6) 1px, transparent 1px, transparent 16px, rgba(255, 255, 255, 0.6) 16px, rgba(255, 255, 255, 0.6) 17px, transparent 17px, transparent 32px, rgba(255, 255, 255, 0.6) 32px, rgba(255, 255, 255, 0.6) 33px, transparent 33px, transparent 48px, rgba(255, 255, 255, 0.6) 48px, rgba(255, 255, 255, 0.6) 49px, transparent 49px, transparent 64px, rgba(255, 255, 255, 0.6) 64px, rgba(255, 255, 255, 0.6) 65px, transparent 65px, transparent 80px, rgba(255, 255, 255, 0.6) 80px, rgba(255, 255, 255, 0.6) 81px), repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.6) 0, rgba(255, 255, 255, 0.6) 1px, transparent 1px, transparent 16px, rgba(255, 255, 255, 0.6) 16px, rgba(255, 255, 255, 0.6) 17px, transparent 17px, transparent 32px, rgba(255, 255, 255, 0.6) 32px, rgba(255, 255, 255, 0.6) 33px, transparent 33px, transparent 48px, rgba(255, 255, 255, 0.6) 48px, rgba(255, 255, 255, 0.6) 49px, transparent 49px, transparent 64px, rgba(255, 255, 255, 0.6) 64px, rgba(255, 255, 255, 0.6) 65px, transparent 65px, transparent 80px, rgba(255, 255, 255, 0.6) 80px, rgba(255, 255, 255, 0.6) 81px), #0067c2; }
+  width: 100%;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  line-height: 1rem; }
+  body.root .app {
+    width: 100%; }
+  body.root a {
+    text-decoration: none;
+    color: white; }
+    body.root a:hover {
+      color: aliceblue;
+      text-decoration: none; }

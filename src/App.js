@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
-import { Navbar, Jumbotron, Button } from 'react-bootstrap';
 import './App.css';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 
-class App extends Component {
-  componentDidMount()  {
-    console.log( ReactDOM.findDOMNode(this.refs.container).style);
-  }
+import {Header} from './js/Header/Header';
+import {SearchingForm} from './js/SearchingForm/SearchingForm';
+import {Offers} from './js/Offers/Offers';
+import {Footer} from './js/Footer/Footer';
+
+
+export class App extends Component {
   render() {
     return (
-      <section>
-        <div className="div1" ref={"container"} >hello</div>
-        <div className="div2"  >hello</div>
-        <div className="div3"  >hello</div>
-      </section>
+      <div className="app">
+        <Header/>
+        <SearchingForm/>
+        <Offers/>
+        <Footer/>
+      </div>
     );
   }
 }
 
-export default App;

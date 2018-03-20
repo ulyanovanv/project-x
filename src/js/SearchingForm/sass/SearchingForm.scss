@@ -1,0 +1,39 @@
+.searching-form {
+  margin: 20px 0;
+  $blue : #05b3d6;
+  .searching-form-row {
+    margin: 20px auto 0 auto;
+    width: 800px;
+
+    .searching-form-options {
+      color: white;
+      font-weight: bold;
+      font-size: 1.5rem;
+      text-align: center;
+      height: 30px;
+      padding: 5px 10px;
+      border-radius: 10px 10px 0 0;
+      display: flex;
+      justify-content: center;
+      & ~ .searching-form-options {
+        margin-left: 20px;
+      }
+      & > div {
+        margin: 0 5px;
+      }
+      img {
+        height: 17px;
+        width: 20px;
+      }
+    }
+  }
+  .searching-form-for-hotels, .searching-form-for-flight, .searching-form-for-car {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: 300px;
+    color: white;
+  }
+
+
+}
