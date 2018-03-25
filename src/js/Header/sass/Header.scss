@@ -1,21 +1,26 @@
-
-
 .header{
   margin: 20px auto 0 auto;
   $blue : #05b3d6;
   color: $blue;
   font-weight: bold;
   height: 35px;
-  width: 800px;
-  //margin: auto;
+  //width: 1000px;
+
+  //  width: 100%;
+  //  padding: 5px;
+  //
+  //@media (min-width: @screen-sm-min) {
+  //  width: 768px;
+  //  margin: auto;
+  //}
 
   .page-name{
     font-style: italic;
-    font-size: 2rem;
+    font-size: 20px;
     padding-left: 30px;
     background-image: url("./../../../images/plane.svg");
     background-repeat: no-repeat;
-    background-size: 25px 25px;
+    background-size: 20px 2.5rem;
 
   }
   .page-settings{
@@ -30,7 +35,7 @@
     padding: 4px 16px;
     background-color: white;
     outline: none;
-    font-size: 1.5rem;
+    //font-size: 1.5rem;
     &:hover {
       border: 2px solid $blue;
     }

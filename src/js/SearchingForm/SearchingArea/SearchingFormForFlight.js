@@ -23,34 +23,33 @@ export default class SearchingFormForFlight extends React.Component {
   }
 
   renderFlightDirection(){
-    return flightDirections.map((it) => {
-      let value = "";
-      if (it.type === "date"){
-        let dateNow = new Date;
-        value = dateNow.getDate() + "." + dateNow.getMonth() + "." + dateNow.getFullYear();
-        console.log(value);
-      }
-      console.log(value);
-      return (<label for="flight-direction">
-        <input type="radio" name="flight-direction" value={value} onClick={()=>{this.setState({direction: it}); } }/>
+    return flightDirections.map((it,key) => {
+
+      return (<label  id={key}>
+        <input type="radio" name="flight-direction"  onClick={()=>{this.setState({direction: it}); } }/>
         {it}
       </label>);
     })
   }
   renderTravelInfoInputs(){
     return inputTypes.map((info,key) => {
+      let value = "";
+      if (info.type === "date"){
+        let dateNow = new Date;
+        value = `${dateNow.getFullYear()}-${dateNow.getMonth() < 10 ? "0"+dateNow.getMonth() : dateNow.getMonth()}-${dateNow.getDate()}`;
+      }
       return (<div className="travel-info-input" key={key}>
         <label>{info.label}</label>
-        <input id="departure-area" type={info.type} className="form-control" placeholder={info.placeholder}/>
+        <input id="departure-area" type={info.type} value={value} className="form-control" placeholder={info.placeholder}/>
       </div>);
     })
   }
   render(){
     return (
       <div className="searching-form-for-flight">
-        <form className="form-inline">
+        <form className="form-styling">
 
-          <div className="flight-direction">
+          <div className="flight-direction row">
             {this.renderFlightDirection()}
             <div className="flight-direction_map">
               <a>Map</a>
