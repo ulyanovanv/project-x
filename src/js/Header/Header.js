@@ -1,28 +1,27 @@
 import React from "react";
 import './sass/Header.css';
-// import plane from './../../images/plane.svg';
+import {ButtonCustomerSettings} from "./Buttons/ButtonCustomerSettings";
+import {ButtonRegistation} from "./Buttons/ButtonRegistration";
 
 export class Header extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      flag: "usa",
-      language: "en",
-      country: "DE",
-      currency: "$ USD"
-    }
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick(value){
+    this.props.handleClick(value);
   }
   render(){
-    return (<section className="header row ">
-      <div className="page-name col-xs-6 col-sm-6 col-md-7">
+    return (<section className="header row">
+      <div className="page-name col-xs-5 col-sm-4 col-md-4">
        SkyFlight
       </div>
-      <div className="col-xs-6 col-sm-6 col-md-5 row">
-        <div className="page-settings  col-xs-8 col-md-8 col-sm-8">
-          <button className="header-button"> {this.state.flag} {this.state.language}-{this.state.country} {this.state.currency}</button>
+      <div className="col-xs-offset-2 col-xs-5 col-sm-offset-3 col-sm-5 col-md-5 row">
+        <div className="custom-settings col-xs-12 col-md-8 col-sm-8">
+          <ButtonCustomerSettings handleClick={(value) => {this.handleClick(value)}}/>
         </div>
-        <div className="registration col-xs-4 col-md-4 col-sm-4">
-          <button className="header-button"> Anmelden </button>
+        <div className="registration col-md-4 col-sm-4">
+          <ButtonRegistation handleClick={(value) => {this.handleClick(value)}}/>
         </div>
       </div>
     </section>);

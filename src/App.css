@@ -6,7 +6,8 @@ body.root {
   font-family: Arial, sans-serif;
   line-height: 1rem; }
   body.root .app {
-    width: 100%; }
+    width: 100%;
+    min-width: 520px; }
   body.root a {
     text-decoration: none;
     color: white; }

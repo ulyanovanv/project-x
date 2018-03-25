@@ -19,10 +19,10 @@ export default class Buttons extends React.Component {
   }
   renderSearchingOptions(){
     return SearchingOptions.map((searchingOption, key) => {
-      return <div className="searching-form-options col-xs-2 col-sm-2 col-md-2 btn btn-info"
+      return <div className="searching-form-options col-xs-3 col-sm-2 col-md-2 btn btn-info"
                   key={key} onClick={() => {this.handleTheClick(searchingOption.text)}}>
-        <div className="d-inline-flex flex-row flex-nowrap"><img src={searchingOption.image}/></div>
-        <div className='d-inline-flex flex-row flex-nowrap'>{searchingOption.text}</div>
+        <div className="d-inline-flex flex-row flex-nowrap"><img src={searchingOption.image} alt=''/></div>
+        <div className='d-inline-flex flex-row flex-nowrap searching-form-options_text'>{searchingOption.text}</div>
       </div>
     })
   }

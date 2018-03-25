@@ -22,7 +22,7 @@ export class SearchingForm extends React.Component {
     return (
       <section className="searching-form">
         <Buttons showSearchingForm={this.showSearchingForm}/>
-        <div className="">
+        <div className="form-container">
           {this.state.searchingArea === "Flights" && <SearchingFormForFlight/>}
           {this.state.searchingArea === "Hotels" && <SearchingFormForHotels />}
           {this.state.searchingArea === "Car Rental" && <SearchingFormForCar />}

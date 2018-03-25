@@ -2,7 +2,17 @@
   margin: 20px auto 0 auto;
   color: #05b3d6;
   font-weight: bold;
-  height: 35px; }
+  height: 35px;
+  padding: 10px 0;
+  width: 90%; }
+  @media (min-width: 768px) {
+    .header {
+      width: 768px;
+      margin: auto; } }
+  @media (min-width: 992px) {
+    .header {
+      width: 992px;
+      margin: auto; } }
   .header .page-name {
     font-style: italic;
     font-size: 20px;
@@ -10,6 +20,9 @@
     background-image: url("./../../../images/plane.svg");
     background-repeat: no-repeat;
     background-size: 20px 2.5rem; }
+  @media (max-width: 768px) {
+    .header .registration {
+      display: none; } }
   .header .header-button {
     border: 2px solid lightgrey;
     border-radius: 20px;

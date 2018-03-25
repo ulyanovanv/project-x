@@ -7,6 +7,8 @@ body.root {
   line-height: 1rem;
   .app {
     width: 100%;
+    min-width: 520px;
+    //position: relative;
   }
   a {
     text-decoration: none;

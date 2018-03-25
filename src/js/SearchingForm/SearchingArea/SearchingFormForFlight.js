@@ -3,11 +3,11 @@ import './../sass/SearchingFormForFlight.css';
 
 const flightDirections = ["Roundtrip","One way", "Multi-city"];
 const inputTypes = [{type:"text",label:"From",placeholder:"country,city or airport"},
-  {type:"button"},
+  {type:"button", label:" "},
   {type:"text",label:"To",placeholder:"country,city or airport"},
-  {type:"date",label: "Depart"},
+  {type:"date",label:"Depart"},
   {type:"date",label:"Return"},
-  {type:"text",label:"Cabin class & Travellers",placeholder:"1 adult, Economy"} ];
+  {type:"text",label:"Cabin class and Travellers",placeholder:"1 adult, Economy"} ];
 
 export default class SearchingFormForFlight extends React.Component {
   constructor(props){
@@ -19,7 +19,8 @@ export default class SearchingFormForFlight extends React.Component {
                   return: "",
                   cabinClass: "Economy",
                   Travellers: 1,
-                  nonStop: null};
+                  nonStop: null
+    };
   }
 
   renderFlightDirection(){
@@ -31,19 +32,35 @@ export default class SearchingFormForFlight extends React.Component {
       </label>);
     })
   }
+
   renderTravelInfoInputs(){
     return inputTypes.map((info,key) => {
+      //date
       let value = "";
       if (info.type === "date"){
-        let dateNow = new Date;
+        let dateNow = new Date();
         value = `${dateNow.getFullYear()}-${dateNow.getMonth() < 10 ? "0"+dateNow.getMonth() : dateNow.getMonth()}-${dateNow.getDate()}`;
       }
+      //id
+      function id(label){
+        return label.toLowerCase().split(" ").join("-");
+      }
+      let idd = id(info.label);
+
+
+
       return (<div className="travel-info-input" key={key}>
         <label>{info.label}</label>
-        <input id="departure-area" type={info.type} value={value} className="form-control" placeholder={info.placeholder}/>
+        <input id={idd}
+               type={info.type}
+               value={value}
+               className="form-control"
+               placeholder={info.placeholder}
+               onChange={(event) => {}}/>
       </div>);
     })
   }
+
   render(){
     return (
       <div className="searching-form-for-flight">

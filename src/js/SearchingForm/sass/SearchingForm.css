@@ -2,7 +2,16 @@
   margin: 20px 0; }
   .searching-form .searching-form-row {
     margin: 20px auto 0 auto;
-    width: 800px; }
+    width: 90%;
+    /* Medium devices (desktops, 992px and up) */ }
+    @media (min-width: 768px) {
+      .searching-form .searching-form-row {
+        width: 768px;
+        margin: auto; } }
+    @media (min-width: 992px) {
+      .searching-form .searching-form-row {
+        width: 992px;
+        margin: auto; } }
     .searching-form .searching-form-row .searching-form-options {
       color: white;
       font-weight: bold;
@@ -24,9 +33,20 @@
       .searching-form .searching-form-row .searching-form-options img {
         height: 20px;
         width: 20px; }
+      @media (max-width: 768px) {
+        .searching-form .searching-form-row .searching-form-options {
+          width: 35px; }
+        .searching-form .searching-form-row .searching-form-options_text {
+          display: none; }
+        .searching-form .searching-form-row .searching-form-options ~ .searching-form-options {
+          margin-left: 10px; } }
   .searching-form .searching-form-for-hotels, .searching-form .searching-form-for-flight, .searching-form .searching-form-for-car {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
     height: 300px;
     color: white; }
+    @media (max-width: 768px) {
+      .searching-form .searching-form-for-hotels, .searching-form .searching-form-for-flight, .searching-form .searching-form-for-car {
+        background-color: #008ca8;
+        background-image: none; } }

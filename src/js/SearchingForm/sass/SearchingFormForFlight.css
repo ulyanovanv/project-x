@@ -1,19 +1,38 @@
 .searching-form-for-flight {
   background-image: url("./../../../images/background/car.jpg"); }
-  .searching-form-for-flight form.form-styling {
+  .searching-form-for-flight .form-styling {
     height: 100%;
-    width: 1000px;
-    padding: 50px 0;
+    width: 90%;
+    padding: 5px;
     margin: auto; }
-  .searching-form-for-flight .flight-direction label {
-    margin: 0 20px;
-    font-size: 20px;
-    font-weight: bold; }
-  .searching-form-for-flight .flight-direction input {
-    margin-right: 5px; }
-  .searching-form-for-flight .flight-direction_map {
-    color: white;
-    margin: 0 20px 0 auto; }
+    @media (min-width: 768px) {
+      .searching-form-for-flight .form-styling {
+        width: 768px; } }
+    @media (min-width: 992px) {
+      .searching-form-for-flight .form-styling {
+        width: 992px; } }
+  .searching-form-for-flight .flight-direction {
+    padding-top: 10px; }
+    .searching-form-for-flight .flight-direction label {
+      margin: 0 20px;
+      font-size: 20px;
+      font-weight: bold; }
+    .searching-form-for-flight .flight-direction input {
+      margin-right: 5px; }
+    .searching-form-for-flight .flight-direction_map {
+      display: inline-block;
+      color: white;
+      margin: 0 20px 0 auto; }
+      .searching-form-for-flight .flight-direction_map a {
+        text-decoration: none;
+        color: white; }
+        .searching-form-for-flight .flight-direction_map a:hover {
+          color: aliceblue;
+          text-decoration: none; }
+    @media (max-width: 768px) {
+      .searching-form-for-flight .flight-direction label {
+        margin: 0 10px;
+        font-size: 14px; } }
   .searching-form-for-flight .searching-critaria {
     margin: 20px 0;
     display: flex;
@@ -27,6 +46,18 @@
       .searching-form-for-flight .searching-critaria a:hover {
         color: aliceblue;
         text-decoration: none; }
+    .searching-form-for-flight .searching-critaria .travel-info-input {
+      padding: 0;
+      margin: 2px 0; }
+      .searching-form-for-flight .searching-critaria .travel-info-input label {
+        margin: 0; }
+    @media (max-width: 768px) {
+      .searching-form-for-flight .searching-critaria {
+        flex-wrap: wrap; }
+        .searching-form-for-flight .searching-critaria .travel-info-input {
+          max-width: 150px; }
+          .searching-form-for-flight .searching-critaria .travel-info-input label {
+            font-size: 14px; } }
   .searching-form-for-flight .start-to-search {
     margin: 30px 0;
     display: flex;

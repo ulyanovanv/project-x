@@ -4,15 +4,16 @@
   color: $blue;
   font-weight: bold;
   height: 35px;
-  //width: 1000px;
-
-  //  width: 100%;
-  //  padding: 5px;
-  //
-  //@media (min-width: @screen-sm-min) {
-  //  width: 768px;
-  //  margin: auto;
-  //}
+  padding: 10px 0;
+  width: 90%;
+  @media (min-width: 768px) {
+    width: 768px;
+    margin: auto;
+  }
+  @media (min-width: 992px) {
+    width: 992px;
+    margin: auto;
+  }
 
   .page-name{
     font-style: italic;
@@ -23,11 +24,13 @@
     background-size: 20px 2.5rem;
 
   }
-  .page-settings{
+  .custom-settings{
     //float: right;
   }
   .registration{
-    //float: right;
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
   .header-button {
     border: 2px solid lightgrey;
