@@ -1,9 +1,59 @@
 .form-registration {
+  display: block;
   position: absolute;
   top: 50%;
   left: 50%;
   background-color: white;
-  border: 2px solid black;
-  height: 100px;
-  width: 100px;
-  transform: translate(-50%, -50%); }
+  height: 350px;
+  border-radius: 5px;
+  width: 600px;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  padding: 20px 5px 5px 5px; }
+  .form-registration header {
+    text-align: center;
+    border-bottom: 1px solid lightgray;
+    font-size: 20px; }
+  .form-registration_login-in {
+    display: flex;
+    flex-direction: row;
+    font-size: 14px; }
+    .form-registration_login-in h5 {
+      font-weight: bold; }
+    .form-registration_login-in_social {
+      width: 40%;
+      margin: 0 20px; }
+      .form-registration_login-in_social button {
+        background-color: white;
+        border: 2px solid lightgray;
+        border-radius: 20px;
+        margin: 5px 0;
+        outline: none; }
+        .form-registration_login-in_social button:focus, .form-registration_login-in_social button:active, .form-registration_login-in_social button:visited {
+          outline: none; }
+        .form-registration_login-in_social button a {
+          text-decoration: none;
+          color: black; }
+    .form-registration_login-in_usual {
+      width: 60%;
+      margin: 0 20px; }
+      .form-registration_login-in_usual p {
+        font-size: 12px; }
+        .form-registration_login-in_usual p span {
+          color: #05b3d6;
+          font-weight: bold; }
+          .form-registration_login-in_usual p span:hover {
+            text-decoration: underline; }
+      .form-registration_login-in_usual input[type="email"], .form-registration_login-in_usual input[type="password"], .form-registration_login-in_usual input[type="text"] {
+        width: 100%;
+        border: 1px solid lightgrey;
+        margin: 5px 0;
+        height: 30px; }
+      .form-registration_login-in_usual_checkbox label {
+        font-size: 14px;
+        font-weight: 100;
+        width: 50%; }
+      .form-registration_login-in_usual input[type="submit"] {
+        border-radius: 20px;
+        font-size: 18px; }

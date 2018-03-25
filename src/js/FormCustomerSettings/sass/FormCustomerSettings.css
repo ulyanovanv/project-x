@@ -3,6 +3,26 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  height: 100px;
-  width: 100px;
-  transform: translate(-50%, -50%); }
+  background-color: white;
+  height: auto;
+  border-radius: 5px;
+  width: 300px;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  padding: 5px; }
+  .form-customer-settings_lists-container_list {
+    margin: 10px;
+    display: flex;
+    flex-direction: column; }
+    .form-customer-settings_lists-container_list label {
+      margin: 0;
+      font-size: 16px; }
+    .form-customer-settings_lists-container_list select {
+      outline: none;
+      height: 30px; }
+  .form-customer-settings_finish-inputs {
+    display: flex;
+    flex-direction: column; }
+    .form-customer-settings_finish-inputs input {
+      margin: 5px 10px; }
