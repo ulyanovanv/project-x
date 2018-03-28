@@ -73,3 +73,6 @@
       font-size: 18px; }
       .searching-form-for-flight .start-to-search_search-button input:focus {
         outline: none; }
+
+.react-datepicker-wrapper {
+  color: black; }

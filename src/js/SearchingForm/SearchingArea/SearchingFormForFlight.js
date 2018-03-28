@@ -1,20 +1,16 @@
 import React from "react";
 import './../sass/SearchingFormForFlight.css';
+import {FlightsSearchingCriteria} from "./Flights/FlightsSearchingCriteria";
 
-const flightDirections = ["Roundtrip","One way", "Multi-city"];
-const inputTypes = [{type:"text",label:"From",placeholder:"country,city or airport"},
-  {type:"button", label:" "},
-  {type:"text",label:"To",placeholder:"country,city or airport"},
-  {type:"date",label:"Depart"},
-  {type:"date",label:"Return"},
-  {type:"text",label:"Cabin class and Travellers",placeholder:"1 adult, Economy"} ];
+const flightDirections = ["Roundtrip","One Way", "Multi-city"];
 
 export default class SearchingFormForFlight extends React.Component {
   constructor(props){
     super(props);
     this.state = {category:"Flights",
-                  direction: "",
-                  from: "", to: "",
+                  direction: "Roundtrip",
+                  from: "",
+                  to: "",
                   depart: "",
                   return: "",
                   cabinClass: "Economy",
@@ -22,42 +18,14 @@ export default class SearchingFormForFlight extends React.Component {
                   nonStop: null
     };
   }
-
   renderFlightDirection(){
     return flightDirections.map((it,key) => {
-
       return (<label  id={key}>
-        <input type="radio" name="flight-direction"  onClick={()=>{this.setState({direction: it}); } }/>
+        <input type="radio" name="flight-direction"
+               checked={it === this.state.direction}
+               onClick={()=>{this.setState({direction: it}); console.log(this.state.direction) } }/>
         {it}
       </label>);
-    })
-  }
-
-  renderTravelInfoInputs(){
-    return inputTypes.map((info,key) => {
-      //date
-      let value = "";
-      if (info.type === "date"){
-        let dateNow = new Date();
-        value = `${dateNow.getFullYear()}-${dateNow.getMonth() < 10 ? "0"+dateNow.getMonth() : dateNow.getMonth()}-${dateNow.getDate()}`;
-      }
-      //id
-      function id(label){
-        return label.toLowerCase().split(" ").join("-");
-      }
-      let idd = id(info.label);
-
-
-
-      return (<div className="travel-info-input" key={key}>
-        <label>{info.label}</label>
-        <input id={idd}
-               type={info.type}
-               value={value}
-               className="form-control"
-               placeholder={info.placeholder}
-               onChange={(event) => {}}/>
-      </div>);
     })
   }
 
@@ -73,9 +41,7 @@ export default class SearchingFormForFlight extends React.Component {
             </div>
           </div>
 
-          <div className="searching-critaria">
-            {this.renderTravelInfoInputs()}
-          </div>
+          <FlightsSearchingCriteria direction={this.state.direction}/>
 
           <div className="start-to-search">
             <div className="start-to-search_container">
