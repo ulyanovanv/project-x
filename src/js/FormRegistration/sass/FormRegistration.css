@@ -4,7 +4,7 @@
   top: 50%;
   left: 50%;
   background-color: white;
-  height: 350px;
+  height: 400px;
   border-radius: 5px;
   width: 600px;
   -webkit-transform: translate(-50%, -50%);
@@ -32,6 +32,8 @@
         outline: none; }
         .form-registration_login-in_social button:focus, .form-registration_login-in_social button:active, .form-registration_login-in_social button:visited {
           outline: none; }
+        .form-registration_login-in_social button:hover {
+          box-shadow: 0px 0px 2px 1px lightgray; }
         .form-registration_login-in_social button a {
           text-decoration: none;
           color: black; }
@@ -49,11 +51,28 @@
         width: 100%;
         border: 1px solid lightgrey;
         margin: 5px 0;
-        height: 30px; }
-      .form-registration_login-in_usual_checkbox label {
-        font-size: 14px;
-        font-weight: 100;
-        width: 50%; }
+        height: 30px;
+        text-indent: 20px; }
+      .form-registration_login-in_usual .error-messanges {
+        width: 100%;
+        background-color: #ff5452;
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        text-indent: 20px;
+        height: 25px;
+        line-height: 25px;
+        border-radius: 10px;
+        margin: 5px 0; }
+      .form-registration_login-in_usual_checkbox {
+        margin: 5px 0;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row; }
+        .form-registration_login-in_usual_checkbox label {
+          font-size: 14px;
+          font-weight: 100;
+          padding-right: 10px; }
       .form-registration_login-in_usual input[type="submit"] {
         border-radius: 20px;
         font-size: 18px; }
