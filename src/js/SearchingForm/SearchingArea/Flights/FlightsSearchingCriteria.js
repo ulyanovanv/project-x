@@ -16,10 +16,20 @@ export class FlightsSearchingCriteria extends React.Component {
         class: "Economy",
         travellers: 1
       },
-      popupVisible: false
+      popupVisible: false,
+      cabinClass: "Economy",
+      adults: 1,
+      children: 0,
+      childrenAge: {}
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
+    this.savePassengersInfo = this.savePassengersInfo.bind(this);
+  }
+  savePassengersInfo(info){
+    let newObj = Object.assign({}, this.state, info);
+    this.setState(newObj);
+    console.log(newObj);
   }
   reverseValues(){
     let from = this.state.from;
@@ -32,6 +42,7 @@ export class FlightsSearchingCriteria extends React.Component {
       document.addEventListener('click', this.handleOutsideClick, false);
     } else {
       document.removeEventListener('click', this.handleOutsideClick, false);
+      // console.log("d");
     }
     this.setState(prevState => ({
       popupVisible: !prevState.popupVisible,
@@ -110,7 +121,8 @@ export class FlightsSearchingCriteria extends React.Component {
                  className="form-control"
                  placeholder={`${this.state.info.class} class, ${this.state.info.travellers} travellers`}
                  onClick={this.handleClick}/>
-          {this.state.popupVisible  && <PassengersInfo/>}
+          {this.state.popupVisible  && <PassengersInfo savePassengersInfo={(passengersInfo) => this.savePassengersInfo(passengersInfo)}
+                                                       stateForUse={this.state}/>}
         </div>
 
       </div>

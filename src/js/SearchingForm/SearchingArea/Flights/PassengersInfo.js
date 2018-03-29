@@ -3,27 +3,35 @@ import './../../sass/PassengersInfo.css';
 
 const cabinClass =["Economy",'Premiun Economy','Bisuness class','First class'];
 const number = {adults: {category: "adults", age: "16+ years"},children: {category: "children", age: "10-15 years"} };
+// let currentState= {
+//
+// };
 
 export class PassengersInfo extends React.Component {
   constructor(props){
     super(props);
+
     this.state = {
-      cabinClass: cabinClass[0],
-      adults: 1,
-      children: 0,
-      childrenAge: []
+      cabinClass: props.stateForUse.cabinClass,
+      adults: props.stateForUse.adults,
+      children: props.stateForUse.children,
+      childrenAge: props.stateForUse.childrenAge
     };
     this.renderClassOptions = this.renderClassOptions.bind(this);
     this.renderNumber = this.renderNumber.bind(this);
     this.changeTravellersNumber = this.changeTravellersNumber.bind(this);
     this.renderAgeOfChildren = this.renderAgeOfChildren.bind(this);
+    this.saveCurrentState = this.saveCurrentState.bind(this);
+  }
+
+  saveCurrentState(){
+    this.props.savePassengersInfo(this.state);
   }
   changeTravellersNumber(ageGroup,operation) {
     switch(operation) {
       case "+":
         this.setState({[ageGroup.category]: this.state[ageGroup.category] + 1});
         break;
-
       case "-":
         let isMinusInputDisabled = (group) => {
           if (group === number.adults) {
@@ -34,27 +42,35 @@ export class PassengersInfo extends React.Component {
         };
         if (!isMinusInputDisabled(ageGroup)) {
           this.setState({[ageGroup.category]: this.state[ageGroup.category] - 1});
-          // console.log(this.state);
-          // if (ageGroup.category === "children") {
-          //   let copy = this.state.children;
-          //   copy.pop();
-          //   console.log(this.state);
-          //   this.setState({childrenAge: copy});
-          // }
+          if (ageGroup.category === "children") {
+            let copy = this.state.childrenAge;
+            // console.log(this.state.childrenAge.length);
+            copy[this.state.children] = null;
+            this.setState({childrenAge: copy});
+            // let length = this.state.children.length -1;
+            // let keys = Object.keys(this.state.children);
+            // let newObj = {};
+            // for (let i = 0; i<keys.length-1; i++){
+            //   newObj[key] =
+            // }
+            // let newCopy =
+
+            // this.setState({children: newObj});
+          }
         }
         break;
     }
   }
   handleChildrenAge(event,i){
-    let arrayNumber = i-1;
     let copy = this.state.childrenAge;
 
-    if (this.state.childrenAge.length >=arrayNumber) {
-      copy[arrayNumber] = event.target.value;
+    if (this.state.childrenAge.hasOwnProperty(i) ) {
+      copy[i] = event.target.value;
       this.setState({childrenAge: copy});
     } else {
-      copy.push(event.target.value);
-      this.setState({childrenAge: copy});
+      let newChild = {[i]: event.target.value };
+      console.log(newChild);
+      this.setState({childrenAge: Object.assign({},this.state.childrenAge,newChild)});
     }
     console.log(this.state);
   }
@@ -120,6 +136,7 @@ export class PassengersInfo extends React.Component {
           {this.renderNumber(number.children)}
           {this.renderAgeOfChildren()}
         </div>
+        <input type="button" className="btn btn-primary" value="Save" onClick={() => {this.saveCurrentState()}} />
       </div>
     </div>)
   }
