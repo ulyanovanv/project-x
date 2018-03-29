@@ -1,6 +1,7 @@
 import React from "react";
 import './../sass/SearchingFormForFlight.css';
 import {FlightsSearchingCriteria} from "./Flights/FlightsSearchingCriteria";
+import moment from 'moment';
 
 const flightDirections = ["Roundtrip","One Way", "Multi-city"];
 
@@ -11,11 +12,13 @@ export default class SearchingFormForFlight extends React.Component {
                   direction: "Roundtrip",
                   from: "",
                   to: "",
-                  depart: "",
-                  return: "",
+                  depart:  moment(),
+                  arrival:  moment(),
+                  popupVisible: false,
                   cabinClass: "Economy",
-                  Travellers: 1,
-                  nonStop: false
+                  adults: 1,
+                  children: 0,
+                  childrenAge: {}
     };
   }
   renderFlightDirection(){

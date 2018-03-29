@@ -10,73 +10,76 @@ const number = {adults: {category: "adults", age: "16+ years"},children: {catego
 export class PassengersInfo extends React.Component {
   constructor(props){
     super(props);
-
-    this.state = {
-      cabinClass: props.stateForUse.cabinClass,
-      adults: props.stateForUse.adults,
-      children: props.stateForUse.children,
-      childrenAge: props.stateForUse.childrenAge
-    };
     this.renderClassOptions = this.renderClassOptions.bind(this);
     this.renderNumber = this.renderNumber.bind(this);
     this.changeTravellersNumber = this.changeTravellersNumber.bind(this);
     this.renderAgeOfChildren = this.renderAgeOfChildren.bind(this);
-    this.saveCurrentState = this.saveCurrentState.bind(this);
+    this.setCabinClass = this.setCabinClass.bind(this);
+    this.setAdults = this.setAdults.bind(this);
+    this.setChildren = this.setChildren.bind(this);
+    this.setChildrenAge = this.setChildrenAge.bind(this);
   }
 
-  saveCurrentState(){
-    this.props.savePassengersInfo(this.state);
+  setCabinClass(value){
+    this.props.setCabinClass(value);
+  }
+  setAdults(value){
+    this.props.setAdults(value);
+  }
+  setChildren(value){
+    this.props.setChildren(value);
+  }
+  setChildrenAge(value){
+    this.props.setChildrenAge(value);
   }
   changeTravellersNumber(ageGroup,operation) {
     switch(operation) {
       case "+":
-        this.setState({[ageGroup.category]: this.state[ageGroup.category] + 1});
+        if (ageGroup === number.adults){
+          this.setAdults(this.props.adults+1);
+        } else if (ageGroup === number.children) {
+          this.setChildren(this.props.children+1);
+        }
         break;
       case "-":
         let isMinusInputDisabled = (group) => {
           if (group === number.adults) {
-            return this.state.adults < 2;
+            return this.props.adults < 2;
           } else if (group === number.children) {
-            return this.state.children < 1;
+            return this.props.children < 1;
           }
         };
         if (!isMinusInputDisabled(ageGroup)) {
-          this.setState({[ageGroup.category]: this.state[ageGroup.category] - 1});
+          if (ageGroup === number.adults){
+            this.setAdults(this.props.adults-1);
+          } else if (ageGroup === number.children) {
+            this.setChildren(this.props.children-1);
+          }
           if (ageGroup.category === "children") {
-            let copy = this.state.childrenAge;
-            // console.log(this.state.childrenAge.length);
-            copy[this.state.children] = null;
-            this.setState({childrenAge: copy});
-            // let length = this.state.children.length -1;
-            // let keys = Object.keys(this.state.children);
-            // let newObj = {};
-            // for (let i = 0; i<keys.length-1; i++){
-            //   newObj[key] =
-            // }
-            // let newCopy =
-
-            // this.setState({children: newObj});
+            let copy = this.props.childrenAge;
+            copy[this.props.children] = null;
+            this.setChildrenAge(copy);
           }
         }
         break;
     }
   }
   handleChildrenAge(event,i){
-    let copy = this.state.childrenAge;
+    let copy = this.props.childrenAge;
 
-    if (this.state.childrenAge.hasOwnProperty(i) ) {
+    if (this.props.childrenAge.hasOwnProperty(i) ) {
       copy[i] = event.target.value;
-      this.setState({childrenAge: copy});
+      this.setChildrenAge(copy);
     } else {
       let newChild = {[i]: event.target.value };
       console.log(newChild);
-      this.setState({childrenAge: Object.assign({},this.state.childrenAge,newChild)});
+      let newObj = Object.assign({},this.props.childrenAge,newChild);
+      this.setChildrenAge(newObj);
     }
-    console.log(this.state);
   }
 
   renderAgeOfChildren(){
-    let childrenAge = [], i = 0, len = this.state.children;
+    let childrenAge = [], i = 0, len = this.props.children;
     while (++i <= len) childrenAge.push(i);
     return childrenAge.map((i) => {
       return (<div className="children-age" key={i}>
@@ -90,16 +93,16 @@ export class PassengersInfo extends React.Component {
 
   renderClassOptions(){
     return cabinClass.map((cabinClass,key) => {
-      return <option key={key} selected={cabinClass === this.state.cabinClass}>{cabinClass}</option>;
+      return <option key={key} selected={cabinClass === this.props.cabinClass}>{cabinClass}</option>;
     })
   }
   renderNumber(ageGroup){
-    let numberOfTravellersInState = ageGroup === number.adults ? this.state.adults : this.state.children;
+    let numberOfTravellersInState = ageGroup === number.adults ? this.props.adults : this.props.children;
     let shouldInputStyleBeChanged = (group) => {
       if (group === number.adults) {
-        return this.state.adults === 1;
+        return this.props.adults === 1;
       }  else if (group === number.children){
-        return this.state.children === 0;
+        return this.props.children === 0;
       }
     };
     return <div className="passengers-info_number_age-category">
@@ -119,7 +122,6 @@ export class PassengersInfo extends React.Component {
     </div>
   }
 
-
   render(){
     return (<div className="passengers-info-container">
       <div className="passengers-info">
@@ -127,7 +129,7 @@ export class PassengersInfo extends React.Component {
 
         <div className="passengers-info_class">
           <label>Cabin class</label>
-          <select className="form-control" onChange={(event) => {this.setState({cabinClass: event.target.value}) }}>
+          <select className="form-control" onChange={(event) => {this.setCabinClass(event.target.value) }}>
             {this.renderClassOptions()}
           </select>
         </div>
@@ -136,7 +138,7 @@ export class PassengersInfo extends React.Component {
           {this.renderNumber(number.children)}
           {this.renderAgeOfChildren()}
         </div>
-        <input type="button" className="btn btn-primary" value="Save" onClick={() => {this.saveCurrentState()}} />
+        <input type="button" className="btn btn-primary" value="Save"/>
       </div>
     </div>)
   }

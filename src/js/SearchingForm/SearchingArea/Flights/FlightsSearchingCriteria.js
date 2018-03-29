@@ -12,10 +12,6 @@ export class FlightsSearchingCriteria extends React.Component {
       to: "",
       depart:  moment(),
       arrival:  moment(),
-      info: {
-        class: "Economy",
-        travellers: 1
-      },
       popupVisible: false,
       cabinClass: "Economy",
       adults: 1,
@@ -24,18 +20,11 @@ export class FlightsSearchingCriteria extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
-    this.savePassengersInfo = this.savePassengersInfo.bind(this);
-  }
-  savePassengersInfo(info){
-    let newObj = Object.assign({}, this.state, info);
-    this.setState(newObj);
-    console.log(newObj);
   }
   reverseValues(){
     let from = this.state.from;
     this.setState({from: this.state.to, to: from});
   }
-
   handleClick() {
     if (!this.state.popupVisible) {
       // attach/remove event handler
@@ -67,7 +56,7 @@ export class FlightsSearchingCriteria extends React.Component {
                  className="form-control"
                  placeholder="country,city or airport"
                  autoComplete="on"
-                 onChange={ (event) => {this.setState({from: event.target.value})}}/>
+                 onChange={ (event) => {this.setState({from: event.target.value});console.log(this.state)}}/>
         </div>
 
         <div className="travel-info-input" >
@@ -116,15 +105,20 @@ export class FlightsSearchingCriteria extends React.Component {
         <div className="travel-info-input" ref={node => { this.node = node; }}>
           <label>Cabin class and Travellers</label>
           <input id="info"
-                 value=""
+                 value={`${this.state.cabinClass}, ${this.state.adults+this.state.children} ${(this.state.adults+this.state.children) > 1 ?"travellers": "traveller"}`}
                  type="text"
                  className="form-control"
-                 placeholder={`${this.state.info.class} class, ${this.state.info.travellers} travellers`}
                  onClick={this.handleClick}/>
           {this.state.popupVisible  && <PassengersInfo savePassengersInfo={(passengersInfo) => this.savePassengersInfo(passengersInfo)}
-                                                       stateForUse={this.state}/>}
+                                                       cabinClass ={this.state.cabinClass}
+                                                       setCabinClass={(value) => {this.setState({cabinClass: value})}}
+                                                       adults={this.state.adults}
+                                                       setAdults={(value) => {this.setState({adults: value})}}
+                                                       children={this.state.children}
+                                                       setChildren={(value) => {this.setState({children: value})}}
+                                                       childrenAge={this.state.childrenAge}
+                                                       setChildrenAge={(value) => {this.setState({childrenAge: value})}}/>}
         </div>
-
       </div>
     )
   }
