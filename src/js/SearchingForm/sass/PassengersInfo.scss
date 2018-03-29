@@ -1,6 +1,63 @@
 .passengers-info-container {
-  .white-triangular {
-  }
+  position: absolute;
+  color: black;
+  right: 30%;
   .passengers-info {
+    position: absolute;
+    background-color: white;
+    height: auto;
+    width: 300px;
+    top: 14px;
+    left: 20px;
+    border-radius: 20px;
+    padding: 12px;
+    box-shadow: 0 0 10px 1px lightgrey;
+    .white-triangular {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border: 0 solid transparent;
+      border-right-width: 14px;
+      border-left-width: 14px;
+      border-bottom: 14px solid white;
+      left: calc(50% - 14px);
+      top: -14px;
+    }
+    &_class {
+      margin: 5px 0;
+      label {
+        padding: 5px;
+      }
+    }
+    &_number {
+      margin: 5px 0;
+      &_age-category {
+        margin: 7px 0;
+        p {
+          margin: 0;
+          padding: 3px 0;
+        }
+        input[type="button"] {
+          outline: none;
+          border-radius: 20px;
+          width: 35px;
+          height: 35px;
+          border: 2px solid lightgray;
+          background: white;
+          margin: 0 10px;
+          color: #05b3d6;
+          font-weight: bold;
+          font-size: 20px;
+          &:hover {
+            border: 2px solid #05b3d6;
+          }
+        }
+        span {
+          font-size: 20px;
+        }
+
+      }
+    }
   }
+
 }

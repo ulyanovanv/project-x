@@ -16,12 +16,33 @@ export class FlightsSearchingCriteria extends React.Component {
         class: "Economy",
         travellers: 1
       },
-      isInfoClicked: false
+      popupVisible: false
     };
+    this.handleClick = this.handleClick.bind(this);
+    this.handleOutsideClick = this.handleOutsideClick.bind(this);
   }
   reverseValues(){
     let from = this.state.from;
     this.setState({from: this.state.to, to: from});
+  }
+
+  handleClick() {
+    if (!this.state.popupVisible) {
+      // attach/remove event handler
+      document.addEventListener('click', this.handleOutsideClick, false);
+    } else {
+      document.removeEventListener('click', this.handleOutsideClick, false);
+    }
+    this.setState(prevState => ({
+      popupVisible: !prevState.popupVisible,
+    }));
+  }
+  handleOutsideClick(e) {
+    // ignore clicks on the component itself
+    if (this.node.contains(e.target)) {
+      return;
+    }
+    this.handleClick();
   }
 
   render(){
@@ -81,17 +102,15 @@ export class FlightsSearchingCriteria extends React.Component {
                       onChange={ (date) => {this.setState({arrival: date }) }}/>
         </div>
 
-        <div className="travel-info-input">
+        <div className="travel-info-input" ref={node => { this.node = node; }}>
           <label>Cabin class and Travellers</label>
           <input id="info"
                  value=""
                  type="text"
                  className="form-control"
                  placeholder={`${this.state.info.class} class, ${this.state.info.travellers} travellers`}
-                 // onChange={(event) => {this.setState({info: event.target.value})}}
-                 onClick={() => {this.setState({isInfoClicked: true})}}/>
-          {this.isInfoClicked && <PassengersInfo/>}
-
+                 onClick={this.handleClick}/>
+          {this.state.popupVisible  && <PassengersInfo/>}
         </div>
 
       </div>

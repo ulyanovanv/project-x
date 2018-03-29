@@ -15,7 +15,7 @@ export default class SearchingFormForFlight extends React.Component {
                   return: "",
                   cabinClass: "Economy",
                   Travellers: 1,
-                  nonStop: null
+                  nonStop: false
     };
   }
   renderFlightDirection(){
@@ -50,7 +50,8 @@ export default class SearchingFormForFlight extends React.Component {
                 Add nearby airport
               </label>
               <label>
-                <input type="checkbox" name="none-stops"/>
+                <input type="checkbox" name="none-stops" checked={this.state.nonStop}
+                       onChange={() => {this.setState({nonStop: !this.state.nonStop}); console.log(this.state)}}/>
                 Non-stop flights only
               </label>
             </div>
