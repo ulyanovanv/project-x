@@ -8,22 +8,32 @@ export class FlightsSearchingCriteria extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      from: "",
-      to: "",
-      depart:  moment(),
-      arrival:  moment(),
-      popupVisible: false,
-      cabinClass: "Economy",
-      adults: 1,
-      children: 0,
-      childrenAge: {}
+      popupVisible: false
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
+    this.setFrom = this.setFrom.bind(this);
+    this.setTo = this.setTo.bind(this);
+    this.setDepart = this.setDepart.bind(this);
+    this.setArrival = this.setArrival.bind(this);
   }
+  setFrom(value){
+    this.props.setFrom(value);
+  }
+  setTo(value){
+    this.props.setTo(value);
+  }
+  setDepart(value){
+    this.props.setDepart(value);
+  }
+  setArrival(value){
+    this.props.setArrival(value);
+  }
+
   reverseValues(){
-    let from = this.state.from;
-    this.setState({from: this.state.to, to: from});
+    let from = this.props.from;
+    this.props.setFrom(this.props.to);
+    this.props.setTo(from);
   }
   handleClick() {
     if (!this.state.popupVisible) {
@@ -51,12 +61,12 @@ export class FlightsSearchingCriteria extends React.Component {
         <div className="travel-info-input">
           <label>From</label>
           <input id="from"
-                 value={this.state.from}
+                 value={this.props.from}
                  type="text"
                  className="form-control"
                  placeholder="country,city or airport"
                  autoComplete="on"
-                 onChange={ (event) => {this.setState({from: event.target.value});console.log(this.state)}}/>
+                 onChange={ (event) => {this.setFrom(event.target.value)}}/>
         </div>
 
         <div className="travel-info-input" >
@@ -75,49 +85,52 @@ export class FlightsSearchingCriteria extends React.Component {
                  className="form-control"
                  placeholder="country,city or airport"
                  autoComplete="on"
-                 onChange={(event) => {this.setState({to: event.target.value})}}/>
+                 onChange={ (event) => {this.setTo(event.target.value)}}/>
         </div>
 
         <div className="travel-info-input">
           <label>Depart</label>
-          <DatePicker value={this.state.depart.format("D.MM.YYYY")}
-                      selected={this.state.depart}
+          <DatePicker value={this.props.depart.format("D.MM.YYYY")}
+                      selected={this.props.depart}
                       selectsStart
-                      startDate={this.state.depart}
-                      endDate={this.state.arrival}
+                      startDate={this.props.depart}
+                      endDate={this.props.arrival}
+                      minDate={moment()}
                       className="form-control"
-                      onChange={ (date) => {this.setState({depart: date }) }}/>
+                      onChange={ (date) => {this.setDepart(date ) }}
+                      locale="en-gb"/>
         </div>
 
 
         <div className="travel-info-input">
           <label>Arrival</label>
-          <DatePicker value={this.state.arrival.format("D.MM.YYYY")}
-                      selected={this.state.arrival}
+          <DatePicker value={this.props.arrival.format("D.MM.YYYY")}
+                      selected={this.props.arrival}
                       selectsEnd
-                      startDate={this.state.depart}
-                      endDate={this.state.arrival}
-                        disabled={this.props.direction === "One Way"}
+                      startDate={this.props.depart}
+                      endDate={this.props.arrival}
+                      disabled={this.props.direction === "One Way"}
                       className="form-control"
-                      onChange={ (date) => {this.setState({arrival: date }) }}/>
+                      onChange={ (date) => {this.setArrival( date );console.log(date) }}
+                      locale="en-gb"/>
         </div>
 
         <div className="travel-info-input" ref={node => { this.node = node; }}>
           <label>Cabin class and Travellers</label>
           <input id="info"
-                 value={`${this.state.cabinClass}, ${this.state.adults+this.state.children} ${(this.state.adults+this.state.children) > 1 ?"travellers": "traveller"}`}
+                 value={`${this.props.cabinClass}, ${this.props.adults+this.props.children} ${(this.props.adults+this.props.children) > 1 ?"travellers": "traveller"}`}
                  type="text"
                  className="form-control"
-                 onClick={this.handleClick}/>
-          {this.state.popupVisible  && <PassengersInfo savePassengersInfo={(passengersInfo) => this.savePassengersInfo(passengersInfo)}
-                                                       cabinClass ={this.state.cabinClass}
-                                                       setCabinClass={(value) => {this.setState({cabinClass: value})}}
-                                                       adults={this.state.adults}
-                                                       setAdults={(value) => {this.setState({adults: value})}}
-                                                       children={this.state.children}
-                                                       setChildren={(value) => {this.setState({children: value})}}
-                                                       childrenAge={this.state.childrenAge}
-                                                       setChildrenAge={(value) => {this.setState({childrenAge: value})}}/>}
+                 onClick={this.handleClick}
+                 onChange={() => {console.log("info from child component")}}/>
+          {this.state.popupVisible  && <PassengersInfo cabinClass ={this.props.cabinClass}
+                                                       setCabinClass={this.props.setCabinClass}
+                                                       adults={this.props.adults}
+                                                       setAdults={this.props.setAdults}
+                                                       children={this.props.children}
+                                                       setChildren={this.props.setChildren}
+                                                       childrenAge={this.props.childrenAge}
+                                                       setChildrenAge={this.props.setChildrenAge}/>}
         </div>
       </div>
     )

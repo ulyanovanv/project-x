@@ -1,5 +1,6 @@
 import React from "react";
 import './sass/FormRegistration.css';
+import axios from "axios";
 
 const initialState = {status: "Log In",
                       email: "",
@@ -33,7 +34,7 @@ export class FormRegistration extends React.Component {
     this.setState({[event.target.type]: event.target.value});
   }
   blurEmail(event){
-    if (/^[a-zA-Z0-9\.\+\-]+@[a-zA-Z]+\.[a-zA-Z]+/.test(event.target.value)){
+    if (/^[a-zA-Z0-9.+-]+@[a-zA-Z]+\.[a-zA-Z]+/.test(event.target.value)){
       this.setState({emailIsCorrect: true});
     } else {
       this.setState({emailIsCorrect: false});
@@ -75,6 +76,21 @@ export class FormRegistration extends React.Component {
     event.preventDefault();
     if (this.state.emailIsCorrect && this.state.passwordIsCorrect ){
       console.log("prepaied to be sent");
+      let objForSent = {
+        status: this.state.status,
+        email: this.state.email,
+        password: this.state.password,
+        saveSettings: this.state.saveSettings
+      };
+      axios.post('http://localhost:3001/log-in-or-registration', {
+        objForSent
+      })
+      .then((response) => {
+          console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
     }
   }
 

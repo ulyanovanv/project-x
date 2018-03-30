@@ -3,9 +3,6 @@ import './../../sass/PassengersInfo.css';
 
 const cabinClass =["Economy",'Premiun Economy','Bisuness class','First class'];
 const number = {adults: {category: "adults", age: "16+ years"},children: {category: "children", age: "10-15 years"} };
-// let currentState= {
-//
-// };
 
 export class PassengersInfo extends React.Component {
   constructor(props){
@@ -14,31 +11,15 @@ export class PassengersInfo extends React.Component {
     this.renderNumber = this.renderNumber.bind(this);
     this.changeTravellersNumber = this.changeTravellersNumber.bind(this);
     this.renderAgeOfChildren = this.renderAgeOfChildren.bind(this);
-    this.setCabinClass = this.setCabinClass.bind(this);
-    this.setAdults = this.setAdults.bind(this);
-    this.setChildren = this.setChildren.bind(this);
-    this.setChildrenAge = this.setChildrenAge.bind(this);
   }
 
-  setCabinClass(value){
-    this.props.setCabinClass(value);
-  }
-  setAdults(value){
-    this.props.setAdults(value);
-  }
-  setChildren(value){
-    this.props.setChildren(value);
-  }
-  setChildrenAge(value){
-    this.props.setChildrenAge(value);
-  }
   changeTravellersNumber(ageGroup,operation) {
     switch(operation) {
       case "+":
         if (ageGroup === number.adults){
-          this.setAdults(this.props.adults+1);
+          this.props.setAdults(this.props.adults+1);
         } else if (ageGroup === number.children) {
-          this.setChildren(this.props.children+1);
+          this.props.setChildren(this.props.children+1);
         }
         break;
       case "-":
@@ -51,17 +32,19 @@ export class PassengersInfo extends React.Component {
         };
         if (!isMinusInputDisabled(ageGroup)) {
           if (ageGroup === number.adults){
-            this.setAdults(this.props.adults-1);
+            this.props.setAdults(this.props.adults-1);
           } else if (ageGroup === number.children) {
-            this.setChildren(this.props.children-1);
+            this.props.setChildren(this.props.children-1);
           }
           if (ageGroup.category === "children") {
             let copy = this.props.childrenAge;
             copy[this.props.children] = null;
-            this.setChildrenAge(copy);
+            this.props.setChildrenAge(copy);
           }
         }
         break;
+      default:
+        console.log("smth wrong");
     }
   }
   handleChildrenAge(event,i){
@@ -69,12 +52,12 @@ export class PassengersInfo extends React.Component {
 
     if (this.props.childrenAge.hasOwnProperty(i) ) {
       copy[i] = event.target.value;
-      this.setChildrenAge(copy);
+      this.props.setChildrenAge(copy);
     } else {
       let newChild = {[i]: event.target.value };
       console.log(newChild);
       let newObj = Object.assign({},this.props.childrenAge,newChild);
-      this.setChildrenAge(newObj);
+      this.props.setChildrenAge(newObj);
     }
   }
 
@@ -84,7 +67,7 @@ export class PassengersInfo extends React.Component {
     return childrenAge.map((i) => {
       return (<div className="children-age" key={i}>
         <p>Child {i}</p>
-        <input type="number" min="0" max="15" step="1" className="form-control"
+        <input type="number" min="0" max="15" step="1" className="form-control" value={this.props.childrenAge[i]}
                onChange={(event) => {this.handleChildrenAge(event,i)}}
                 />
       </div>)
@@ -129,7 +112,7 @@ export class PassengersInfo extends React.Component {
 
         <div className="passengers-info_class">
           <label>Cabin class</label>
-          <select className="form-control" onChange={(event) => {this.setCabinClass(event.target.value) }}>
+          <select className="form-control" onChange={(event) => {this.props.setCabinClass(event.target.value) }}>
             {this.renderClassOptions()}
           </select>
         </div>
@@ -138,7 +121,7 @@ export class PassengersInfo extends React.Component {
           {this.renderNumber(number.children)}
           {this.renderAgeOfChildren()}
         </div>
-        <input type="button" className="btn btn-primary" value="Save"/>
+        {/*<input type="button" className="btn btn-primary" value="Save"/>*/}
       </div>
     </div>)
   }

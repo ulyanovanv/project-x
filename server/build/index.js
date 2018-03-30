@@ -1,42 +1,51 @@
 const express = require('express');
 const app = express();
-const http = require("http");
-const path = require('path');
-
-app.set('port',8080);
-app.use(express.static(path.join(__dirname, 'build')));
+const countriesData = require("./inforamation");
 
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+// const cors = require('cors')
+// const path = require('path');
+const port = 3001;
+
+// app.set('port',8080);
+app.use(express.static('public'));
+// app.use(express.static(path.join(__dirname, 'build')));
+// app.use(cors());
+
+const fixCORS = (res, req) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Request-Method', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS,GET,POST');
+  res.setHeader('Access-Control-Allow-Headers', '*');
+};
+
+
+app.options(["/searching-flights","/log-in-or-registration", "/settings","/setting-info"], (req,res) => {
+  fixCORS(res, req);
+  res.status(200).send();
 });
-//Middleware
-app.get('/', function (req, res, next) {
-  if (req.url == "/"){
-    return res.send('ping');
-  } else {
-    next();
+
+
+app.get("/setting-info", (req,res,next) => {
+  fixCORS(res, req);
+  console.log("yes");
+  if (countriesData.countries) {
+    res.send({data: countriesData.countries});
   }
 });
-//a chain of requests can be done using next
-app.get('/test', function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  if (req.url == "/test"){
-    return res.send('test');
+
+
+app.post(["/searching-flights","/log-in-or-registration","/settings"], (req,res) => {
+  fixCORS(res, req);
+  const receivedExpression = req.query;
+  if (receivedExpression) {
+    res.status(201).send(receivedExpression);
   } else {
-    next();
+    console.log("not foud");
+    res.status(400).send();
   }
 });
-app.use(function(req,res){
-  res.send(404, "404: page is not found");
+
+app.listen(port, () => {
+  console.log("it works on " + port);
 });
-
-
-
-
-
-
-app.listen(process.env.PORT || app.get('port'));

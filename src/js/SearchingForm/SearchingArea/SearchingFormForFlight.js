@@ -2,6 +2,7 @@ import React from "react";
 import './../sass/SearchingFormForFlight.css';
 import {FlightsSearchingCriteria} from "./Flights/FlightsSearchingCriteria";
 import moment from 'moment';
+import axios from "axios";
 
 const flightDirections = ["Roundtrip","One Way", "Multi-city"];
 
@@ -20,13 +21,33 @@ export default class SearchingFormForFlight extends React.Component {
                   children: 0,
                   childrenAge: {}
     };
+    this.handleForm = this.handleForm.bind(this);
   }
+
+  handleForm(event){
+    event.preventDefault();
+    console.log(this.state);
+    let formInfo = this.state;
+    axios({
+      method: 'post',
+      url: 'http://localhost:3001/searching-flights',
+      data: {
+        formInfo
+      }
+    }).then(function (response) {
+        console.log(response);
+    })
+      .catch(function (error) {
+        console.log(error);
+    });
+  }
+
   renderFlightDirection(){
     return flightDirections.map((it,key) => {
       return (<label  id={key}>
-        <input type="radio" name="flight-direction"
+        <input type="radio" id={key} name="flight-direction"
                checked={it === this.state.direction}
-               onClick={()=>{this.setState({direction: it}); console.log(this.state.direction) } }/>
+               onChange={()=>{this.setState({direction: it}) } }/>
         {it}
       </label>);
     })
@@ -35,7 +56,7 @@ export default class SearchingFormForFlight extends React.Component {
   render(){
     return (
       <div className="searching-form-for-flight">
-        <form className="form-styling">
+        <form className="form-styling" onSubmit={(event) => {this.handleForm(event)}}>
 
           <div className="flight-direction row">
             {this.renderFlightDirection()}
@@ -44,8 +65,25 @@ export default class SearchingFormForFlight extends React.Component {
             </div>
           </div>
 
-          <FlightsSearchingCriteria direction={this.state.direction}/>
+          <FlightsSearchingCriteria direction={this.state.direction}
 
+                                    from={this.state.from}
+                                    setFrom={(value) => {this.setState({from: value})}}
+                                    to={this.state.to}
+                                    setTo={(value) => {this.setState({to: value})}}
+                                    depart={this.state.depart}
+                                    setDepart={(value) => {this.setState({depart: value})}}
+                                    arrival={this.state.arrival}
+                                    setArrival={(value) => {this.setState({arrival: value})}}
+
+                                    cabinClass ={this.state.cabinClass}
+                                    setCabinClass={(value) => {this.setState({cabinClass: value})}}
+                                    adults={this.state.adults}
+                                    setAdults={(value) => {this.setState({adults: value})}}
+                                    children={this.state.children}
+                                    setChildren={(value) => {this.setState({children: value})}}
+                                    childrenAge={this.state.childrenAge}
+                                    setChildrenAge={(value) => {this.setState({childrenAge: value});console.log(value)}}/>
           <div className="start-to-search">
             <div className="start-to-search_container">
               <label>
